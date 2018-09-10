@@ -34,6 +34,7 @@ def format_card(note: str) -> str:
         card_front = '<br />{}<br />'.format(lines[0][2:])
     else:
         print('Received an incorrectly formatted note: {}'.format(note))
+        return ''
     card_back = '<br />'.join(lines[1:])
     return card_front + '\t' + card_back
 

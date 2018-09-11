@@ -9,10 +9,11 @@ def read_orgmode_file(filename: str) -> List[str]:
     """
     Reads in an org-mode file and returns a list of strings, each containing a note.
     """
-    notes = []
+    notes = []  # type: List[str]
+    lines = []  # type: List[str]
     try:
-        with open(filename, 'r') as inputf:
-            lines = inputf.readlines()
+        with open(filename, 'r', encoding='utf-8') as inputf:
+            lines = [line for line in inputf.readlines()]
     except EnvironmentError as err:
         print('Problem occured while reading {}:'.format(filename), err)
     # Now convert the lines into notes
@@ -46,7 +47,7 @@ def write_cards_to_file(cards: List[str], output_file: str, append: bool) -> Non
     else:
         file_args = 'w'
     try:
-        with open(output_file, file_args) as outputf:
+        with open(output_file, file_args, encoding='utf-8') as outputf:
             for card in cards:
                 outputf.write(card + '\n')
     except EnvironmentError as err:

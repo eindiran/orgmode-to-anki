@@ -1,6 +1,13 @@
+#!/usr/bin/env python3
+
 """
+orgmode_to_anki.py
 Read in an org-mode and convert it to a tab-separated file suitable for use with Anki.
+Allows the file to then be imported as a new deck or to update an existing deck.
+
+Author: Elliott Indiran <elliott.indiran@protonmail.com>
 """
+
 from typing import List
 import argparse
 

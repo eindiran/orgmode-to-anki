@@ -67,14 +67,19 @@ def main() -> None:
                                      'matching Anki card with HTML formatting.')
     parser.add_argument('-i', '--input', nargs=1, type=str, required=True, dest='input_file',
                         help='Location of the org-mode file to consume.')
-    parser.add_argument('-o', '--output', nargs=1, type=str, required=True, dest='output_file',
+    parser.add_argument('-o', '--output', nargs=1, type=str, required=False, dest='output_file',
                         help='Output file where HTML-formatted Anki cards are written.')
     parser.add_argument('-a', '--append', action='store_true', help='Append to output file, ' +
                         'rather than writing to it.')
     args = parser.parse_args()
     # Argparse guarantees that we don't need to wrap the next two lines in a try-except
     input_file = args.input_file[0].strip()
-    output_file = args.output_file[0].strip()
+    if args.output_file is not None:
+        output_file = args.output_file[0].strip()
+    else:
+        # Strip off the input file's filetype; append '.txt'
+        output_prefix = input_file.rsplit('.', 1)[0]
+        output_file = output_prefix + '.txt'
     try:
         notes = read_orgmode_file(input_file)
         cards = [format_card(note) for note in notes]

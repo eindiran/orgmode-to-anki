@@ -1,0 +1,141 @@
+# Configuration for ruff linter + ruff formatter
+
+# Assume Python 3.12:
+target-version = "py312"
+
+# Max line length:
+line-length = 101
+# Spaces to indent:
+indent-width = 4
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+[lint]
+# Enable pycodestyle (`E`, `W`), Pyflakes (`F`), flake8-bugbear (`B`),
+# pydocstyle (`D`), Ruff (`RUF`), pyupgrade (`UP`), flake8-async (`ASYNC`),
+# PyLint (`PL`), and Pandas-specific (`PD`) codes.
+# Don't enable C901 (McCabe complexity)
+select = [
+    "I",
+    "E",
+    "F",
+    "B",
+    "W",
+    "D",
+    "UP",
+    "ASYNC",
+    "RUF",
+    "PL",
+]
+ignore = [
+    "D105",  # undocumented-magic-method
+    "D106",  # undocumented-public-nested-class
+    "D107",  # undocumented-public-init
+    "D200",  # fits-on-one-line
+    "D203",  # one-blank-line-before-class
+    "D204",  # one-blank-line-after-class
+    "D205",  # blank-line-after-summary
+    "D206",  # indent-with-spaces (REDUNDANT)
+    "D212",  # multi-line-summary-first-line
+    "D400",  # ends-in-period
+    "D401",  # non-imperative-mood
+    "D402",  # no-signature
+    "D415",  # ends-in-punctuation
+    "D404",  # docstring-starts-with-this
+    "E712",  # true-false-comparison
+    "E741",  # ambiguous-variable-name
+    "B009",  # get-attr-with-constant
+    "B010",  # set-attr-with-constant
+    "B905",  # zip-without-explicit-strict
+    "E402",  # module-import-not-at-top-of-file
+    "D413",  # missing-blank-line-after-last-section
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "I",
+    "N",
+    "Q",
+    "S",
+    "T",
+    "W",
+    "ANN",
+    "ARG",
+    "BLE",
+    "COM",
+    "DJ",
+    "DTZ",
+    "EM",
+    "ERA",
+    "EXE",
+    "FBT",
+    "ICN",
+    "INP",
+    "ISC",
+    "NPY",
+    "PD",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "PYI",
+    "RET",
+    "RSE",
+    "RUF",
+    "SIM",
+    "SLF",
+    "TCH",
+    "TID",
+    "TRY",
+    "UP",
+    "YTT",
+]
+# Don't try to fix flake8-bugbear or import:
+unfixable = [
+    "B",
+    "F401",
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.per-file-ignores]
+"__init__.py" = [
+    "E402",  # Import violations
+    "F401",
+]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"  # Unix line endings
